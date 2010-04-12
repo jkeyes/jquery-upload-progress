@@ -22,7 +22,8 @@
     preloadImages: [],
     uploadProgressPath: '/javascripts/jquery.uploadProgress.js',
     jqueryPath: '/javascripts/jquery.js',
-    timer: ""
+    timer: "",
+    uuid: ""
   }, options);
   
   $(function() {
@@ -62,11 +63,12 @@
   
   return this.each(function(){
     $(this).bind('submit', function() {
-      var uuid = "";
-      for (i = 0; i < 32; i++) { uuid += Math.floor(Math.random() * 16).toString(16); }
-      
-      /* update uuid */
-      options.uuid = uuid;
+      if (options.uuid == "") {
+        var uuid = "";
+        for (i = 0; i < 32; i++) { uuid += Math.floor(Math.random() * 16).toString(16); }
+        /* update uuid */
+        options.uuid = uuid;
+      }
       /* start callback */
       options.start();
  
